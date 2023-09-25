@@ -72,7 +72,7 @@ for (let i = 0; i < 10; i++) {
   cards.forEach((card) => marquee.appendChild(card.cloneNode(true)));
 }
 let not = true;
-cards.forEach((card) => {
+document.querySelectorAll(".card").forEach((card) => {
   card.onmouseover = () => marquee.stop();
   card.onmouseleave = () => marquee.start();
 
