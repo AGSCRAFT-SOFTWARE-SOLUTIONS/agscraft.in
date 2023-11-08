@@ -431,8 +431,15 @@ nav .active::after {
     border-radius: 2vmin;
 }
 
-#certificateDownload {
+#certificateDownload,
+#certificateQr {
     display: none;
+}
+
+#certificateQrImg {
+    padding: 1rem;
+    background: white;
+    margin-top: 1rem;
 }
 
 #errMsg {

@@ -128,14 +128,33 @@ const getCertificate = (e, id) => {
         .storage()
         .ref(`certificates/${id}.jpg`)
         .getDownloadURL()
-        .then((res) => {
+        .then(async (res) => {
             errMsg.style.display = "none";
             certificateImg.src = res;
             certificateDownload.href = res;
+            await fetch("https://t.ly/api/v1/link/shorten", {
+                method: "POST",
+                headers: {
+                    Authorization:
+                        "Bearer 3Ap5EPTk2Yw5llJ80BWxVC6wfwNOz6IVauenRPxLH4l6P47Tfc3poTSR0Pxb",
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                },
+                body: JSON.stringify({
+                    long_url: res,
+                    domain: "https://t.ly/",
+                }),
+            }).then((response) =>
+                response.json().then((shrtndlnk) => {
+                    certificateQrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${shrtndlnk.short_url}`;
+                })
+            );
             certificateDownload.style.display = "block";
+            certificateQr.style.display = "block";
         })
         .catch((err) => {
             errMsg.innerText = "Certificate cannot be found";
             errMsg.style.display = "block";
+            certificateQr.style.display = "none";
         });
 };
