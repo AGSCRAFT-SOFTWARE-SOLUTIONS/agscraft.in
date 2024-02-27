@@ -28,6 +28,15 @@ hamburger.onclick = () => {
   (child) => (child.onclick = () => (mobileNav.style.width = `0%`))
 );
 
+document.querySelectorAll("section").forEach(
+  (section) =>
+    (section.onclick = () => {
+      if (mobileNav.style.width == `100%`) {
+        mobileNav.style.width = `0%`;
+      }
+    })
+);
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {

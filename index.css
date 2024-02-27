@@ -28,7 +28,8 @@ README
   --c-text: hsl(0, 0%, 100%);
   --c-glass: hsla(0, 0%, 100%, 0.1);
 }
-[data-color-scheme="dark"] nav > a > img {
+[data-color-scheme="dark"] nav > a > img,
+[data-color-scheme="dark"] #mobile-nav img {
   filter: invert(0);
 }
 
@@ -148,6 +149,13 @@ p {
 /* ----- bubble styling ends here ----- */
 
 /* ----- nav styling starts here ----- */
+
+nav > a > img,
+#mobile-nav img {
+  height: clamp(1.5rem, 2vw, 1.75rem);
+  filter: invert();
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -167,11 +175,6 @@ nav > * {
 
 nav > a {
   gap: clamp(0.5rem, 2vw, 0.75rem);
-}
-
-nav > a > img {
-  height: clamp(1.5rem, 2vw, 1.75rem);
-  filter: invert();
 }
 
 nav > div > i {
@@ -207,7 +210,7 @@ nav .active::after {
   position: fixed;
   height: 50vh;
   width: 0%;
-  background: hsla(0, 0%, 0%, 0.5);
+  background: var(--c-glass);
   top: 0;
   right: 0;
   backdrop-filter: blur(10px);
@@ -226,14 +229,25 @@ nav .active::after {
   transition: 0.2s ease-in-out;
 }
 
+#mobile-nav-head {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+#mobile-nav-head a {
+  display: flex;
+  gap: clamp(0.5rem, 2vw, 0.75rem);
+}
+
 #mobile-nav > *:hover {
-  background: var(--c-glass);
+  background: color-mix(in srgb, var(--c-glass), transparent);
 }
 #mobile-nav h3 {
   position: relative;
 }
-#mobile-nav .active {
-  border: 1px solid var(--c-glass);
+#mobile-nav a:has(.active) {
+  background: var(--c-glass);
 }
 
 /* ----- nav styling ends here ----- */
