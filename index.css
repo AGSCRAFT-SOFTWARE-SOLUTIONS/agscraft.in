@@ -172,15 +172,13 @@ nav > a {
 nav > a > img {
   height: clamp(1.5rem, 2vw, 1.75rem);
   filter: invert();
-  /* height: 2rem; */
 }
-
-/* nav > div {
-  align-items: center;
-} */
 
 nav > div > i {
   align-self: center;
+}
+
+nav > div > i:not(:nth-child(3)) {
   margin-right: 1.5rem;
 }
 
