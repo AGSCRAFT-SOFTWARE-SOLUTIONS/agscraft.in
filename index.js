@@ -9,16 +9,31 @@ emailjs.init("31wh_JFd1pkkG5i-F");
 const hamburger = document.querySelector("#hamburger");
 const mobileNav = document.querySelector("#mobile-nav");
 const pageAnchors = document.querySelectorAll(".anchor");
-
-// making an array from desktop and mobile nav items
 const navItems = [
   ...document.querySelectorAll("nav a"),
   ...document.querySelectorAll("#mobile-nav a h3"),
 ];
-
 const sun = document.querySelector(".fa-sun");
 const moon = document.querySelector(".fa-moon");
 const html = document.documentElement;
+const marquee = document.querySelector("marquee");
+const cards = document.querySelectorAll(".card");
+
+// color scheme
+const switchColorSchemeIcons = (isDark) =>
+  isDark
+    ? ((sun.style.display = "none"), (moon.style.display = "block"))
+    : ((sun.style.display = "block"), (moon.style.display = "none"));
+
+const switchColorScheme = (key) => {
+  key
+    ? (html.dataset.colorScheme = "dark")
+    : (html.dataset.colorScheme = "light");
+
+  switchColorSchemeIcons(key);
+};
+
+switchColorScheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
 
 // hamburger functionalities
 hamburger.onclick = () => {
@@ -53,21 +68,19 @@ const observer = new IntersectionObserver((entries) => {
 
 pageAnchors.forEach((anchor) => observer.observe(anchor));
 
-// color scheme
-const switchColorSchemeIcons = (isDark) =>
-  isDark
-    ? ((sun.style.display = "none"), (moon.style.display = "block"))
-    : ((sun.style.display = "block"), (moon.style.display = "none"));
+for (let i = 0; i < 10; i++) {
+  cards.forEach((card) => marquee.appendChild(card.cloneNode(true)));
+}
+let not = true;
+cards.forEach((card) => {
+  card.onmouseover = () => marquee.stop();
+  card.onmouseleave = () => marquee.start();
 
-const switchColorScheme = (key) => {
-  key
-    ? (html.dataset.colorScheme = "dark")
-    : (html.dataset.colorScheme = "light");
-
-  switchColorSchemeIcons(key);
-};
-
-switchColorScheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+  card.ontouchstart = () => {
+    marquee[!not ? "start" : "stop"]();
+    not = !not;
+  };
+});
 
 function numberFilter(e) {
   if (

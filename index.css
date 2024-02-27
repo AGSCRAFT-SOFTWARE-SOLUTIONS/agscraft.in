@@ -326,6 +326,34 @@ nav .active::after {
 }
 /* ----- services styling ends here ----- */
 
+/* ----- portfolio styling starts here ----- */
+.card {
+  aspect-ratio: 3/4;
+  background-color: var(--c-glass);
+  border-radius: 1vmin;
+  width: 325px;
+  display: inline-block;
+  margin-right: 1rem;
+  overflow: hidden;
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+.card div {
+  padding: 1rem;
+  text-wrap: wrap;
+}
+
+.card div a {
+  border-bottom: 1px solid white;
+}
+/* ----- portfolio styling ends here ----- */
+
 /* ----- why-us styling starts here ----- */
 
 #why-us h1 {
